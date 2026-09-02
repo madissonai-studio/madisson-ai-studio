@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  /* Haute Cinematic Atelier palette */
+  --color-ink: #121110;      /* primary — near-black */
+  --color-gold: #c5a059;     /* secondary — champagne gold */
+  --color-taupe: #78746d;    /* tertiary — warm grey */
+  --color-paper: #faf8f5;    /* neutral — off-white */
+  --color-paper-dim: #f1ede6;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-gold: var(--color-gold);
+  --color-taupe: var(--color-taupe);
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --font-display: var(--font-bodoni);
+  --font-sans: var(--font-hanken);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-bodoni), Georgia, serif;
+}
+
+/* thin gold hairline divider used across sections */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+.card-hover {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(18, 17, 16, 0.35);
+}
