@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prompts } from "@/data/prompts";
 import { LockIcon, ArrowRightIcon, CheckIcon } from "@/components/icons";
+import PromptDetailMedia from "@/components/PromptDetailMedia";
 
 export function generateStaticParams() {
   return prompts.map((p) => ({ slug: p.slug }));
@@ -24,7 +25,7 @@ export default async function PromptDetailPage({
         ← Back to the vault
       </Link>
 
-      <div className="mt-4 flex items-center gap-3">
+      <div className="mt-4 flex flex-wrap items-center gap-3">
         <span className="text-xs uppercase tracking-wide text-gold">
           {prompt.category}
         </span>
@@ -36,21 +37,45 @@ export default async function PromptDetailPage({
           {isPro && <LockIcon className="h-3 w-3" />}
           {isPro ? "Pro" : "Free"}
         </span>
+        {isPro && prompt.sourced === "drafted" && (
+          <span className="text-[11px] uppercase tracking-wide text-taupe">
+            Starter guideline — refine with your own notes
+          </span>
+        )}
       </div>
 
       <h1 className="mt-3 font-display text-3xl sm:text-4xl">{prompt.title}</h1>
 
-      <div className={`mt-6 h-64 rounded-2xl bg-gradient-to-br ${prompt.cover}`} />
+      <PromptDetailMedia prompt={prompt} />
 
-      {/* Prompt text — always visible */}
+      <a
+        href={prompt.igUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 inline-flex items-center gap-1 text-xs text-taupe underline decoration-gold/60 underline-offset-4"
+      >
+        View the original on Instagram →
+      </a>
+
+      {/* Description — always visible */}
       <div className="mt-8">
-        <h2 className="text-xs uppercase tracking-wide text-taupe">The prompt</h2>
+        <h2 className="text-xs uppercase tracking-wide text-taupe">About this one</h2>
         <p className="mt-3 whitespace-pre-line rounded-2xl border border-ink/10 bg-white/60 p-6 text-sm leading-relaxed sm:text-base">
-          {prompt.shortPrompt}
+          {prompt.description}
         </p>
       </div>
 
-      {/* Assets — always listed, download gated per-asset by tier could be added later */}
+      {/* Full prompt — Pro only */}
+      {isPro && prompt.fullPrompt && (
+        <div className="mt-8">
+          <h2 className="text-xs uppercase tracking-wide text-taupe">The exact prompt</h2>
+          <p className="mt-3 whitespace-pre-line rounded-2xl border border-ink/10 bg-white/60 p-6 text-sm leading-relaxed sm:text-base">
+            {prompt.fullPrompt}
+          </p>
+        </div>
+      )}
+
+      {/* Assets */}
       <div className="mt-8">
         <h2 className="text-xs uppercase tracking-wide text-taupe">Included assets</h2>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -80,8 +105,8 @@ export default async function PromptDetailPage({
             <div className="relative flex flex-col items-center gap-4 px-8 py-14 text-center">
               <LockIcon className="h-8 w-8 text-gold" />
               <p className="max-w-sm text-sm text-paper/80">
-                The step-by-step guideline, model settings, and full requirement
-                list for this recreation are exclusive to Pro Pass members.
+                The step-by-step guideline and full requirement list for this
+                recreation are exclusive to Pro Pass members.
               </p>
               <Link
                 href={`/pro?from=${prompt.slug}`}
@@ -94,12 +119,15 @@ export default async function PromptDetailPage({
           </div>
         ) : (
           <p className="mt-3 rounded-2xl border border-ink/10 bg-white/60 p-6 text-sm text-taupe">
-            This one&rsquo;s a free drop — prompt and asset above are everything
-            you need.{" "}
+            This one&rsquo;s a free drop — comment on the{" "}
+            <a href={prompt.igUrl} target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-gold">
+              original Instagram reel
+            </a>{" "}
+            to get the exact prompt in your DMs, or{" "}
             <Link href="/pro" className="text-ink underline decoration-gold">
-              Pro Pass
+              unlock every prompt instantly
             </Link>{" "}
-            unlocks full guidelines on every recreation-style prompt like this.
+            with Pro Pass.
           </p>
         )}
       </div>
