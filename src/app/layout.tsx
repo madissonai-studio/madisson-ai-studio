@@ -5,6 +5,7 @@ import { site } from "@/config/site";
 import { CurrencyProvider } from "@/components/currency-context";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingSocial from "@/components/FloatingSocial";
 
 const bodoni = Bodoni_Moda({
   variable: "--font-bodoni",
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FloatingSocial />
         </CurrencyProvider>
       </body>
     </html>
