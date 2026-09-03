@@ -50,8 +50,8 @@ export default function Hero() {
         <dl className="mt-10 grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
           {[
             ["5.2K+", "Instagram followers"],
-            ["30+", "Viral recreations posted"],
-            ["6", "Prompts in the vault"],
+            ["30", "Real recreations in the vault"],
+            ["6", "Pro prompts unlocked"],
             ["1:1", "Mentorship available"],
           ].map(([value, label]) => (
             <div key={label}>
