@@ -9,9 +9,11 @@ export default function Footer() {
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gold text-gold font-display text-lg">
-                M
-              </span>
+              <img
+                src={site.profileImage}
+                alt={site.shortName}
+                className="h-9 w-9 rounded-full border border-gold object-cover"
+              />
               <span className="font-display text-lg">Madisson AI Studio</span>
             </div>
             <p className="mt-3 text-sm text-taupe">{site.tagline}</p>
