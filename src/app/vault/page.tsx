@@ -1,8 +1,8 @@
-import { prompts } from "@/data/prompts";
-import PromptCard from "@/components/PromptCard";
+import VaultBrowser from "@/components/VaultBrowser";
 
 export const metadata = {
   title: "The Vault — Madisson AI Studio",
+  description: "Every prompt and reference asset behind Madisson AI's viral cinematic recreations.",
 };
 
 export default function VaultPage() {
@@ -11,15 +11,13 @@ export default function VaultPage() {
       <p className="text-xs uppercase tracking-[0.2em] text-gold">The Vault</p>
       <h1 className="mt-2 font-display text-4xl">Every prompt. Every asset.</h1>
       <p className="mt-3 max-w-xl text-sm text-taupe sm:text-base">
-        Free cards show you the exact prompt and one reference asset. Pro cards
-        unlock the full asset set plus a step-by-step guideline for recreating
-        the video yourself.
+        Hover any card to watch it play. Free cards show the video and effect
+        breakdown. Pro cards unlock the exact prompt, every reference asset,
+        and a step-by-step guideline for recreating it yourself.
       </p>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {prompts.map((p) => (
-          <PromptCard key={p.slug} prompt={p} />
-        ))}
+      <div className="mt-10">
+        <VaultBrowser />
       </div>
     </section>
   );
