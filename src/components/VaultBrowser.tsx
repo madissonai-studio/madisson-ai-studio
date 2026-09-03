@@ -5,15 +5,23 @@ import { prompts, categories, type PromptTier } from "@/data/prompts";
 import PromptCard from "./PromptCard";
 
 type TierFilter = "all" | PromptTier;
+type SortMode = "newest" | "featured" | "az";
+
+const SORT_LABELS: Record<SortMode, string> = {
+  newest: "Newest first",
+  featured: "Featured (Pro first)",
+  az: "A – Z",
+};
 
 export default function VaultBrowser() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("All");
   const [tier, setTier] = useState<TierFilter>("all");
+  const [sort, setSort] = useState<SortMode>("newest");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return prompts.filter((p) => {
+    let list = prompts.filter((p) => {
       if (category !== "All" && p.category !== category) return false;
       if (tier !== "all" && p.tier !== tier) return false;
       if (q && !(p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q))) {
@@ -21,7 +29,17 @@ export default function VaultBrowser() {
       }
       return true;
     });
-  }, [query, category, tier]);
+
+    // "newest" needs no reorder — the vault array is already newest-first,
+    // matching the order these were actually posted to Instagram.
+    if (sort === "featured") {
+      list = [...list].sort((a, b) => (a.tier === b.tier ? 0 : a.tier === "pro" ? -1 : 1));
+    } else if (sort === "az") {
+      list = [...list].sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    return list;
+  }, [query, category, tier, sort]);
 
   return (
     <div>
@@ -33,6 +51,20 @@ export default function VaultBrowser() {
           placeholder="Search prompts…"
           className="w-full max-w-sm rounded-full border border-ink/15 bg-white/70 px-5 py-2.5 text-sm outline-none focus:border-gold sm:w-auto"
         />
+        <div className="flex items-center gap-2 text-xs text-taupe">
+          <span className="uppercase tracking-wide">Sort</span>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as SortMode)}
+            className="rounded-full border border-ink/15 bg-white/70 px-4 py-2 text-xs text-ink outline-none focus:border-gold"
+          >
+            {(Object.keys(SORT_LABELS) as SortMode[]).map((s) => (
+              <option key={s} value={s}>
+                {SORT_LABELS[s]}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="flex flex-wrap gap-2">
           {(["all", "free", "pro"] as TierFilter[]).map((t) => (
             <button
