@@ -4,13 +4,19 @@ import PromptCard from "./PromptCard";
 import { ArrowRightIcon } from "./icons";
 
 export default function Marketplace() {
-  const preview = prompts.slice(0, 8);
+  // Curated homepage order: Pro (featured) picks first, then the newest free
+  // drops filling the rest — same logic explained on the /vault sort control.
+  const pro = prompts.filter((p) => p.tier === "pro");
+  const free = prompts.filter((p) => p.tier === "free");
+  const preview = [...pro, ...free].slice(0, 8);
 
   return (
     <section id="vault" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 sm:px-8">
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-gold">The Vault</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-gold">
+            The Vault · Featured picks, newest first
+          </p>
           <h2 className="mt-2 font-display text-3xl sm:text-4xl">
             Every prompt, every asset, in one place
           </h2>
