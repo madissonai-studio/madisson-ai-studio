@@ -11,10 +11,14 @@ export const site = {
   // Replace with your real handles/URLs whenever ready.
   social: {
     instagram: "https://www.instagram.com/madissonai/",
+    // TODO: verify — no Facebook Page was found connected yet (checked SlideDM
+    // settings). Swap this for the real Page URL once you have one linked.
     facebook: "https://www.facebook.com/madissonai",
     youtube: "https://www.youtube.com/@MadissonAi",
   },
-  contactEmail: "hello@madisson.ai", // used for academy / mentorship enquiries
+  instagramFollowers: "5.2K+",
+  profileImage: "/madisson-profile.jpg",
+  contactEmail: "madissonai@boringfilmcompany.com",
 };
 
 // ─────────────────────────────────────────────────────────────────────────
