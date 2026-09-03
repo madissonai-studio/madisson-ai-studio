@@ -11,9 +11,7 @@ export const site = {
   // Replace with your real handles/URLs whenever ready.
   social: {
     instagram: "https://www.instagram.com/madissonai/",
-    // TODO: verify — no Facebook Page was found connected yet (checked SlideDM
-    // settings). Swap this for the real Page URL once you have one linked.
-    facebook: "https://www.facebook.com/madissonai",
+    facebook: "https://www.facebook.com/profile.php?id=61593245484088",
     youtube: "https://www.youtube.com/@MadissonAi",
   },
   instagramFollowers: "5.2K+",
