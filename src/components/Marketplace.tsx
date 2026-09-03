@@ -4,7 +4,7 @@ import PromptCard from "./PromptCard";
 import { ArrowRightIcon } from "./icons";
 
 export default function Marketplace() {
-  const preview = prompts.slice(0, 6);
+  const preview = prompts.slice(0, 8);
 
   return (
     <section id="vault" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 sm:px-8">
@@ -15,9 +15,10 @@ export default function Marketplace() {
             Every prompt, every asset, in one place
           </h2>
           <p className="mt-3 max-w-xl text-sm text-taupe sm:text-base">
-            Free cards give you the exact prompt and one reference asset — the
-            same thing you&rsquo;d get by commenting on a post. Pro cards unlock
-            the complete asset set and a full shot-by-shot guideline.
+            Hover any card to watch it play. Free cards get you the video and
+            the effect breakdown — the same as commenting on a post. Pro cards
+            unlock the exact prompt, every reference asset, and a full
+            shot-by-shot guideline, instantly.
           </p>
         </div>
         <Link
