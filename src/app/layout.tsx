@@ -19,8 +19,30 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — Prompt & Asset Vault`,
+  metadataBase: new URL("https://madisson-ai-studio.vercel.app"),
+  title: {
+    default: `${site.name} — Prompt & Asset Vault`,
+    template: `%s — ${site.name}`,
+  },
   description: site.description,
+  icons: {
+    icon: site.profileImage,
+    apple: site.profileImage,
+  },
+  openGraph: {
+    title: `${site.name} — Prompt & Asset Vault`,
+    description: site.description,
+    url: "https://madisson-ai-studio.vercel.app",
+    siteName: site.name,
+    images: [{ url: "/og-image.jpg", width: 1080, height: 1920 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Prompt & Asset Vault`,
+    description: site.description,
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
