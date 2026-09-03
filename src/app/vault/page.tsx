@@ -15,6 +15,11 @@ export default function VaultPage() {
         breakdown. Pro cards unlock the exact prompt, every reference asset,
         and a step-by-step guideline for recreating it yourself.
       </p>
+      <p className="mt-2 max-w-xl text-xs text-taupe/80">
+        Shown newest-first by default, matching the order these were posted to
+        Instagram — switch to “Featured” to see Pro picks first, or search /
+        filter by category.
+      </p>
 
       <div className="mt-10">
         <VaultBrowser />
