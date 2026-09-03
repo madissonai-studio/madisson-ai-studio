@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prompts } from "@/data/prompts";
-import { LockIcon, ArrowRightIcon, CheckIcon } from "@/components/icons";
+import { LockIcon, CheckIcon } from "@/components/icons";
 import PromptDetailMedia from "@/components/PromptDetailMedia";
+import ProUnlockPanel from "@/components/ProUnlockPanel";
 
 export function generateStaticParams() {
   return prompts.map((p) => ({ slug: p.slug }));
@@ -75,9 +76,11 @@ export default async function PromptDetailPage({
         </div>
       )}
 
-      {/* Assets */}
+      {/* Assets currently available */}
       <div className="mt-8">
-        <h2 className="text-xs uppercase tracking-wide text-taupe">Included assets</h2>
+        <h2 className="text-xs uppercase tracking-wide text-taupe">
+          {isPro ? "Included assets" : "Available now"}
+        </h2>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
           {prompt.assets.map((a) => (
             <li
@@ -93,44 +96,8 @@ export default async function PromptDetailPage({
         </ul>
       </div>
 
-      {/* Guideline + requirements — Pro only */}
-      <div className="mt-8">
-        <h2 className="text-xs uppercase tracking-wide text-taupe">
-          Full guideline &amp; requirements
-        </h2>
-
-        {isPro ? (
-          <div className="relative mt-3 overflow-hidden rounded-2xl border border-gold/40 bg-ink text-paper">
-            <div className="pointer-events-none absolute inset-0 backdrop-blur-md" />
-            <div className="relative flex flex-col items-center gap-4 px-8 py-14 text-center">
-              <LockIcon className="h-8 w-8 text-gold" />
-              <p className="max-w-sm text-sm text-paper/80">
-                The step-by-step guideline and full requirement list for this
-                recreation are exclusive to Pro Pass members.
-              </p>
-              <Link
-                href={`/pro?from=${prompt.slug}`}
-                className="mt-2 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm text-ink transition hover:bg-paper"
-              >
-                Unlock with Pro Pass
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <p className="mt-3 rounded-2xl border border-ink/10 bg-white/60 p-6 text-sm text-taupe">
-            This one&rsquo;s a free drop — comment on the{" "}
-            <a href={prompt.igUrl} target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-gold">
-              original Instagram reel
-            </a>{" "}
-            to get the exact prompt in your DMs, or{" "}
-            <Link href="/pro" className="text-ink underline decoration-gold">
-              unlock every prompt instantly
-            </Link>{" "}
-            with Pro Pass.
-          </p>
-        )}
-      </div>
+      {/* Persuasive unlock panel — confirms access for Pro, sells the upgrade for Free */}
+      <ProUnlockPanel prompt={prompt} />
 
       {isPro && prompt.requirements && (
         <div className="mt-8 rounded-2xl border border-ink/10 bg-paper-dim/60 p-6">
