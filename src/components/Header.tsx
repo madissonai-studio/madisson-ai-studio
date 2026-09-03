@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useCurrency } from "./currency-context";
-import type { Currency } from "@/config/site";
+import { site, type Currency } from "@/config/site";
 
 const navLinks = [
   { href: "/#vault", label: "Vault" },
@@ -20,9 +20,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gold text-gold font-display text-lg">
-            M
-          </span>
+          <img
+            src={site.profileImage}
+            alt={site.shortName}
+            className="h-9 w-9 rounded-full border border-gold object-cover"
+          />
           <span className="font-display text-lg tracking-wide">Madisson AI Studio</span>
         </Link>
 
