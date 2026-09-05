@@ -48,3 +48,25 @@ export const currencySymbol: Record<Currency, string> = {
   INR: "₹",
   USD: "$",
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// CANVAS — the pay-per-video generator tool (upload photo → personalise the
+// exact recreation prompt with your own ChatGPT → pay once → get your video).
+// Right now it's demo mode: no real Razorpay charge and no real ByteDance
+// video call happen yet. Once real API access + a Razorpay key are wired in,
+// these numbers drive the real price shown to visitors.
+//
+//   costPerSecUSD      → your estimated per-second cost from the ByteDance
+//                         (Seedance) video API
+//   defaultDurationSec → assumed video length used for the price estimate
+//   platformFeePercent → the % of the TOTAL price you (PromptCanvas) keep;
+//                         the rest covers the AI generation cost
+//   inrPerUsd          → used only to show a friendly INR estimate
+// ─────────────────────────────────────────────────────────────────────────
+
+export const canvasPricing = {
+  costPerSecUSD: 0.14,
+  defaultDurationSec: 10,
+  platformFeePercent: 5,
+  inrPerUsd: 83,
+};
