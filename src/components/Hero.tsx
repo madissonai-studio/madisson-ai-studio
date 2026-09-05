@@ -37,6 +37,13 @@ export default function Hero() {
               <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
             </Link>
             <Link
+              href="/canvas"
+              className="group inline-flex items-center gap-2 rounded-full border border-gold/60 px-7 py-3.5 text-sm text-ink transition hover:border-gold hover:bg-gold"
+            >
+              Make your own on Canvas
+              <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
+            </Link>
+            <Link
               href="/pro"
               className="inline-flex items-center gap-2 rounded-full border border-ink/25 px-7 py-3.5 text-sm transition hover:border-ink"
             >
