@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prompts } from "@/data/prompts";
-import { LockIcon, CheckIcon } from "@/components/icons";
+import { LockIcon, CheckIcon, ArrowRightIcon } from "@/components/icons";
 import PromptDetailMedia from "@/components/PromptDetailMedia";
 import ProUnlockPanel from "@/components/ProUnlockPanel";
 
@@ -57,6 +57,28 @@ export default async function PromptDetailPage({
       >
         View the original on Instagram →
       </a>
+
+      {/* Canvas CTA — generate your own personalised version of this recreation */}
+      {!prompt.isPhoto && (
+        <Link
+          href={`/canvas/${prompt.slug}`}
+          className="mt-6 flex flex-col gap-3 rounded-2xl border border-gold/40 bg-ink px-6 py-5 text-paper transition hover:bg-gold hover:text-ink sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div>
+            <p className="text-xs uppercase tracking-wide text-gold group-hover:text-ink">
+              Canvas
+            </p>
+            <p className="mt-1 text-sm sm:text-base">
+              Upload your own photo and generate your own version of this recreation — pay once
+              per video, no subscription.
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold">
+            Open Canvas
+            <ArrowRightIcon className="h-4 w-4" />
+          </span>
+        </Link>
+      )}
 
       {/* Description — always visible */}
       <div className="mt-8">
