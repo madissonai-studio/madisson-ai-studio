@@ -8,6 +8,7 @@ import { site, type Currency } from "@/config/site";
 const navLinks = [
   { href: "/#vault", label: "Vault" },
   { href: "/vault", label: "All Prompts" },
+  { href: "/canvas", label: "Canvas" },
   { href: "/pro", label: "Pro Pass" },
   { href: "/academy", label: "Academy" },
 ];
